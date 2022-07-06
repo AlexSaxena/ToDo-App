@@ -1,3 +1,3 @@
-# A Simple ToDO-list Application !
+# A Simple ToDo-List Application !
 
-Simple ToDo App created using HTML, CSS and Javascript. (Webpack)
+Simple ToDo App created using HTML, CSS, JavaScript & Webpack
