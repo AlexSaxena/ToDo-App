@@ -1,1 +1,1 @@
-console.log("Greetings, General Kenobi!");
+(()=>{"use strict";console.log("Hello There!"),console.log("Greetings, General Kenobi!")})();
