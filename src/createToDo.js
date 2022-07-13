@@ -17,7 +17,7 @@ function generateId() {
 }
 
 function createNewToDo(title, Desc, date, priority, completed = false) {
-  todo = {
+  let todo = {
     Title: title,
     Description: Desc,
     DueDate: date,
@@ -29,3 +29,14 @@ function createNewToDo(title, Desc, date, priority, completed = false) {
 
   return todo;
 }
+
+function checkToDo() {
+  if (allToDoArray.length < 1) {
+    return console.log("empty");
+  }
+  allToDoArray.forEach((item) => {
+    console.table(item);
+  });
+}
+
+export { createNewToDo, generateId, checkToDo, allToDoArray };
