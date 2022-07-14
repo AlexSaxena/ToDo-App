@@ -1,26 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= htmlWebpackPlugin.options.title %></title>
     <link rel="stylesheet" href="main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner:wght@600&family=Montserrat:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/431630e28f.js"
+      crossorigin="anonymous"
+    ></script>
+    <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
-    <div class="grid-main-container">
-      <header class="header"><h1>Things To Do!</h1></header>
-      <aside class="aside">
-        <h3>Aside Section</h3>
-        <button>Today</button>
+    <div class="content-container">
+      <aside class="aside-container">
+        <div class="greet-div">
+          <i class="fa-solid fa-user-large"></i><span>Hello User!</span>
+        </div>
+        <div class="aside-inner-top">
+          <h2 class="aside-task-title">Task Board</h2>
+          <button class="btn-create-todo">
+            <i class="fa-solid fa-plus-large">+</i> Add New Task
+          </button>
+        </div>
+        <div class="aside-inner-bottom">
+          <h3 class="projects-title">Projects</h3>
+          <ul class="project-list">
+            <li>My Project</li>
+          </ul>
+        </div>
       </aside>
-      <main class="main-div">
-        <h2>Main Content</h2>
-        <div class="todo-container">
-          <button class="create-items">Create ToDo</button>
-          <button class="show-items">Show ToDo's</button>
+      <main class="main-container">
+        <div class="main-header"><h1>Things To Do!</h1></div>
+        <div class="main-content">
+          <ul class="todo-list">
+            <li class="todo-item">Test Item</li>
+          </ul>
         </div>
       </main>
-      <footer class="footer">Created by: Alex Saxena</footer>
+      <footer class="footer-container">Created by: Alex Saxena</footer>
     </div>
   </body>
 </html>
