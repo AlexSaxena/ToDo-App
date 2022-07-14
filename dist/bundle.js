@@ -15,6 +15,65 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (console.log("Hello There!"));
 
 
+/***/ }),
+
+/***/ "./src/createToDo.js":
+/*!***************************!*\
+  !*** ./src/createToDo.js ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "allToDoArray": () => (/* binding */ allToDoArray),
+/* harmony export */   "checkToDo": () => (/* binding */ checkToDo),
+/* harmony export */   "createNewToDo": () => (/* binding */ createNewToDo),
+/* harmony export */   "generateId": () => (/* binding */ generateId)
+/* harmony export */ });
+/*  factory Function to create new ToDo Items
+    Every object Should have | Title, Description, Due Date, Priority, Checkbox(True == Completed), Id |
+
+    For Testing
+    createNewToDo("a", "a", "a", "top", true);
+    let test1 = createNewToDo("b", "b", "b", "mid", true);
+    let test2 = createNewToDo("c", "c", "c", "bottom", false);
+
+*/
+
+let id = 1;
+let allToDoArray = [];
+
+function generateId() {
+  let test = id++;
+  return test;
+}
+
+function createNewToDo(title, Desc, date, priority, completed = false) {
+  let todo = {
+    Title: title,
+    Description: Desc,
+    DueDate: date,
+    Priority: priority,
+    Completed: completed,
+    Id: generateId(),
+  };
+  allToDoArray.push(todo);
+
+  return todo;
+}
+
+function checkToDo() {
+  if (allToDoArray.length < 1) {
+    return console.log("empty");
+  }
+  allToDoArray.forEach((item) => {
+    console.table(item);
+  });
+}
+
+
+
+
 /***/ })
 
 /******/ 	});
@@ -81,11 +140,20 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _content__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./content */ "./src/content.js");
+/* harmony import */ var _createToDo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createToDo */ "./src/createToDo.js");
 
 // import "./styles/main.css";
 
 _content__WEBPACK_IMPORTED_MODULE_0__["default"];
 console.log("Greetings, General Kenobi!");
+
+document.querySelector(".create-items").addEventListener("click", () => {
+  (0,_createToDo__WEBPACK_IMPORTED_MODULE_1__.createNewToDo)("a", "a", "a", "top", true);
+});
+
+document.querySelector(".show-items").addEventListener("click", () => {
+  (0,_createToDo__WEBPACK_IMPORTED_MODULE_1__.checkToDo)();
+});
 
 })();
 
