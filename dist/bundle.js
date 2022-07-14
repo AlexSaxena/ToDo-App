@@ -147,7 +147,7 @@ __webpack_require__.r(__webpack_exports__);
 _content__WEBPACK_IMPORTED_MODULE_0__["default"];
 console.log("Greetings, General Kenobi!");
 
-document.querySelector(".create-items").addEventListener("click", () => {
+document.querySelector(".btn-create-todo").addEventListener("click", () => {
   (0,_createToDo__WEBPACK_IMPORTED_MODULE_1__.createNewToDo)("a", "a", "a", "top", true);
 });
 
