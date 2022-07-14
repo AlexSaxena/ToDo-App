@@ -23,6 +23,7 @@ ul {
   border: solid black 1px;
   display: grid;
   grid-template-rows: auto 1fr 2fr;
+  background-color: rgb(211, 211, 211);
 }
 .greet-div {
   display: flex;
