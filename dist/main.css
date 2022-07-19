@@ -88,6 +88,80 @@ ul {
 .main-content {
   border: solid green 1px;
 }
+/* Popup Form */
+.popup {
+  border: solid black 1px;
+  width: 400px;
+  background-color: #e7e7e7;
+  border-radius: 6px;
+  position: absolute;
+  top: 0;
+  left: 55%;
+  transform: translate(-50%, -50%) scale(0.1);
+  text-align: center;
+  padding: 0 30px 30px;
+  color: #333;
+  visibility: hidden;
+  transition: transform 0.4s, top 0.4s;
+}
+.open-popup {
+  visibility: visible;
+  top: 45%;
+  transform: translate(-50%, -50%) scale(1);
+}
+.popup-title {
+  font-size: 34px;
+  font-weight: 500;
+  margin: 30px 0 10px;
+  margin-bottom: 1rem;
+}
+form label {
+  font-family: montserrat;
+  font-weight: 500;
+  letter-spacing: 3px;
+}
+input[type="text"],
+input[type="date"],
+select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+  text-align: center;
+}
+select {
+  text-transform: uppercase;
+}
+.form-btns {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+.form-btns > button {
+  color: #fff;
+  padding: 15px 50px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.popup-btn-add {
+  background-color: rgb(45, 163, 45);
+}
+.popup-btn-exit {
+  background-color: rgb(218, 3, 3);
+}
+.todo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Footer */
 .footer-container {
   font-family: "Montserrat", sans-serif;
   background-color: black;
