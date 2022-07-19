@@ -142,18 +142,45 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _content__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./content */ "./src/content.js");
 /* harmony import */ var _createToDo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createToDo */ "./src/createToDo.js");
 
-// import "./styles/main.css";
 
-_content__WEBPACK_IMPORTED_MODULE_0__["default"];
+
 console.log("Greetings, General Kenobi!");
+_content__WEBPACK_IMPORTED_MODULE_0__["default"];
 
-document.querySelector(".btn-create-todo").addEventListener("click", () => {
-  (0,_createToDo__WEBPACK_IMPORTED_MODULE_1__.createNewToDo)("a", "a", "a", "top", true);
+let popup = document.getElementById("popup");
+// createNewToDo("a", "a", "a", "top", true);
+
+const renderVariables = (function () {
+  let openPopupBtn = document.querySelector(".btn-create-todo");
+  let closePopupBtn = document.querySelector(".popup-btn-exit");
+  let popup = document.getElementById("popup");
+  return { openPopupBtn, closePopupBtn, popup };
+})();
+
+// Event Listeners For opening & Closing Form
+renderVariables.openPopupBtn.addEventListener("click", () => {
+  if (popup.classList.contains("open-popup")) {
+    closePopup();
+  } else {
+    showPopup();
+  }
 });
 
-document.querySelector(".show-items").addEventListener("click", () => {
-  (0,_createToDo__WEBPACK_IMPORTED_MODULE_1__.checkToDo)();
+renderVariables.closePopupBtn.addEventListener("click", () => {
+  closePopup();
 });
+
+// Functions for Removing Open/Close Popup CLASS
+const showPopup = () => {
+  renderVariables.popup.classList.add("open-popup");
+};
+const closePopup = () => {
+  renderVariables.popup.classList.remove("open-popup");
+};
+
+// document.querySelector(".show-items").addEventListener("click", () => {
+//   checkToDo();
+// });
 
 })();
 
