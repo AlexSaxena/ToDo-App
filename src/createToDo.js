@@ -16,7 +16,14 @@ function generateId() {
   return test;
 }
 
-function createNewToDo(title, Desc, date, priority, completed = false) {
+function createNewToDo(
+  title,
+  Desc,
+  date,
+  priority,
+  completed = false,
+  currentProject = "standard"
+) {
   let todo = {
     Title: title,
     Description: Desc,
@@ -24,6 +31,7 @@ function createNewToDo(title, Desc, date, priority, completed = false) {
     Priority: priority,
     Completed: completed,
     Id: generateId(),
+    CurrentProject: currentProject,
   };
   allToDoArray.push(todo);
 
@@ -39,4 +47,4 @@ function checkToDo() {
   });
 }
 
-export { createNewToDo, generateId, checkToDo, allToDoArray };
+export { createNewToDo, checkToDo, allToDoArray };
