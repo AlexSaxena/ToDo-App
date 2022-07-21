@@ -75,7 +75,3 @@ const newToDo = () => {
   let done = false;
   createNewToDo(title, desc, dueDate, prio, done);
 };
-
-// document.querySelector(".show-items").addEventListener("click", () => {
-//   checkToDo();
-// });
