@@ -150,37 +150,74 @@ _content__WEBPACK_IMPORTED_MODULE_0__["default"];
 let popup = document.getElementById("popup");
 // createNewToDo("a", "a", "a", "top", true);
 
-const renderVariables = (function () {
+const renderBodyElements = (function () {
   let openPopupBtn = document.querySelector(".btn-create-todo");
   let closePopupBtn = document.querySelector(".popup-btn-exit");
+  let newToDoItem = document.querySelector(".popup-btn-add");
   let popup = document.getElementById("popup");
-  return { openPopupBtn, closePopupBtn, popup };
+  let formTitle = document.querySelector("#title");
+  let formDesc = document.querySelector("#description");
+  let formPriority = document.querySelector("#priority");
+  let formDueDate = document.querySelector("#duedate");
+  return {
+    openPopupBtn,
+    closePopupBtn,
+    newToDoItem,
+    popup,
+    formTitle,
+    formDesc,
+    formPriority,
+    formDueDate,
+  };
 })();
 
 // Event Listeners For opening & Closing Form
-renderVariables.openPopupBtn.addEventListener("click", () => {
+renderBodyElements.openPopupBtn.addEventListener("click", () => {
   if (popup.classList.contains("open-popup")) {
     closePopup();
+    resetForm();
   } else {
     showPopup();
   }
 });
 
-renderVariables.closePopupBtn.addEventListener("click", () => {
+// Listener On Form Close Btn
+renderBodyElements.closePopupBtn.addEventListener("click", () => {
   closePopup();
+  resetForm();
+});
+
+// Listener ADD TODO
+renderBodyElements.newToDoItem.addEventListener("click", () => {
+  newToDo();
+  resetForm();
+  (0,_createToDo__WEBPACK_IMPORTED_MODULE_1__.checkToDo)();
 });
 
 // Functions for Removing Open/Close Popup CLASS
 const showPopup = () => {
-  renderVariables.popup.classList.add("open-popup");
+  renderBodyElements.popup.classList.add("open-popup");
 };
 const closePopup = () => {
-  renderVariables.popup.classList.remove("open-popup");
+  renderBodyElements.popup.classList.remove("open-popup");
 };
 
-// document.querySelector(".show-items").addEventListener("click", () => {
-//   checkToDo();
-// });
+// Reset Form Values Function
+const resetForm = () => {
+  renderBodyElements.formTitle.value = null;
+  renderBodyElements.formDesc.value = null;
+  renderBodyElements.formDueDate.value = null;
+  renderBodyElements.formPriority.value = "low";
+};
+
+const newToDo = () => {
+  let title = renderBodyElements.formTitle.value;
+  let desc = renderBodyElements.formDesc.value;
+  let dueDate = renderBodyElements.formDueDate.value;
+  let prio = renderBodyElements.formPriority.value;
+  let done = false;
+  (0,_createToDo__WEBPACK_IMPORTED_MODULE_1__.createNewToDo)(title, desc, dueDate, prio, done);
+};
 
 })();
 
