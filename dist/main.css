@@ -19,6 +19,7 @@ font-family: 'Montserrat', sans-serif;
 ul {
   list-style: none;
 }
+/* ASIDE Section */
 .aside-container {
   border: solid black 1px;
   display: grid;
@@ -31,14 +32,12 @@ ul {
   text-decoration: underline;
   padding: 2rem;
   gap: 1rem;
-  /* border: solid blue 1px; */
 }
 .aside-inner-top {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  /* border: solid orange 1px; */
 }
 .aside-task-title {
   font-size: 3rem;
@@ -66,7 +65,6 @@ ul {
   flex-direction: column;
   align-items: center;
   gap: 15px;
-  /* border: solid red 1px; */
 }
 .projects-title {
   font-family: "Edu TAS Beginner";
@@ -75,9 +73,12 @@ ul {
 .project-list {
   list-style: circle;
 }
-.main-cotainer {
+/* MAIN Section */
+.main-container {
   border: solid orange 1px;
   display: flex;
+  align-items: center;
+  justify-content: space-evenly;
   flex-direction: column;
 }
 .main-header {
@@ -87,10 +88,15 @@ ul {
   border: solid blue 1px;
   font-size: 2.5rem;
   text-decoration: underline;
-  height: 20vh;
 }
 .main-content {
   border: solid green 1px;
+  height: 600px;
+  width: 850px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
 }
 /* Popup Form */
 .popup {
