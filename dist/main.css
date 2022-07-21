@@ -83,7 +83,11 @@ ul {
 .main-header {
   display: flex;
   justify-content: center;
+  align-items: flex-end;
   border: solid blue 1px;
+  font-size: 2.5rem;
+  text-decoration: underline;
+  height: 20vh;
 }
 .main-content {
   border: solid green 1px;
