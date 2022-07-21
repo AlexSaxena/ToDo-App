@@ -10,6 +10,7 @@ let popup = document.getElementById("popup");
 const renderBodyElements = (function () {
   let openPopupBtn = document.querySelector(".btn-create-todo");
   let closePopupBtn = document.querySelector(".popup-btn-exit");
+  let newToDoItem = document.querySelector(".popup-btn-add");
   let popup = document.getElementById("popup");
   let formTitle = document.querySelector("#title");
   let formDesc = document.querySelector("#description");
@@ -18,6 +19,7 @@ const renderBodyElements = (function () {
   return {
     openPopupBtn,
     closePopupBtn,
+    newToDoItem,
     popup,
     formTitle,
     formDesc,
@@ -36,17 +38,17 @@ renderBodyElements.openPopupBtn.addEventListener("click", () => {
   }
 });
 
-const resetForm = () => {
-  renderBodyElements.formTitle.value = null;
-  renderBodyElements.formDesc.value = null;
-  renderBodyElements.formDueDate.value = null;
-  renderBodyElements.formPriority.value = "low";
-};
-
-// Listeners
+// Listener On Form Close Btn
 renderBodyElements.closePopupBtn.addEventListener("click", () => {
   closePopup();
   resetForm();
+});
+
+// Listener ADD TODO
+renderBodyElements.newToDoItem.addEventListener("click", () => {
+  newToDo();
+  resetForm();
+  checkToDo();
 });
 
 // Functions for Removing Open/Close Popup CLASS
@@ -55,6 +57,23 @@ const showPopup = () => {
 };
 const closePopup = () => {
   renderBodyElements.popup.classList.remove("open-popup");
+};
+
+// Reset Form Values Function
+const resetForm = () => {
+  renderBodyElements.formTitle.value = null;
+  renderBodyElements.formDesc.value = null;
+  renderBodyElements.formDueDate.value = null;
+  renderBodyElements.formPriority.value = "low";
+};
+
+const newToDo = () => {
+  let title = renderBodyElements.formTitle.value;
+  let desc = renderBodyElements.formDesc.value;
+  let dueDate = renderBodyElements.formDueDate.value;
+  let prio = renderBodyElements.formPriority.value;
+  let done = false;
+  createNewToDo(title, desc, dueDate, prio, done);
 };
 
 // document.querySelector(".show-items").addEventListener("click", () => {
