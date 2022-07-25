@@ -27,8 +27,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "allToDoArray": () => (/* binding */ allToDoArray),
 /* harmony export */   "checkToDo": () => (/* binding */ checkToDo),
-/* harmony export */   "createNewToDo": () => (/* binding */ createNewToDo),
-/* harmony export */   "generateId": () => (/* binding */ generateId)
+/* harmony export */   "createNewToDo": () => (/* binding */ createNewToDo)
 /* harmony export */ });
 /*  factory Function to create new ToDo Items
     Every object Should have | Title, Description, Due Date, Priority, Checkbox(True == Completed), Id |
@@ -48,7 +47,14 @@ function generateId() {
   return test;
 }
 
-function createNewToDo(title, Desc, date, priority, completed = false) {
+function createNewToDo(
+  title,
+  Desc,
+  date,
+  priority,
+  completed = false,
+  currentProject = "standard"
+) {
   let todo = {
     Title: title,
     Description: Desc,
@@ -56,6 +62,7 @@ function createNewToDo(title, Desc, date, priority, completed = false) {
     Priority: priority,
     Completed: completed,
     Id: generateId(),
+    CurrentProject: currentProject,
   };
   allToDoArray.push(todo);
 
@@ -210,14 +217,39 @@ const resetForm = () => {
   renderBodyElements.formPriority.value = "low";
 };
 
+// Get Values from Form and Send to ToDo Func..
 const newToDo = () => {
   let title = renderBodyElements.formTitle.value;
   let desc = renderBodyElements.formDesc.value;
   let dueDate = renderBodyElements.formDueDate.value;
   let prio = renderBodyElements.formPriority.value;
   let done = false;
-  (0,_createToDo__WEBPACK_IMPORTED_MODULE_1__.createNewToDo)(title, desc, dueDate, prio, done);
+  let current = getCurrentProject();
+  (0,_createToDo__WEBPACK_IMPORTED_MODULE_1__.createNewToDo)(title, desc, dueDate, prio, done, current);
 };
+
+// Fill ToDo List
+function fillToDoList() {
+  let current = getCurrentProject();
+  _createToDo__WEBPACK_IMPORTED_MODULE_1__.allToDoArray.forEach((item) => {
+    if (current == item.CurrentProject) {
+      let item = createToDoItem(item);
+    }
+  });
+}
+
+// Function for generating a new ToDo item
+function createToDoItem(todoObject) {
+  let newToDoItem = "Complete";
+  return newToDoItem;
+}
+
+// Gets Current Project name
+function getCurrentProject() {
+  let main = document.querySelector(".main-content");
+  let current = main.getAttribute("id");
+  return current;
+}
 
 })();
 

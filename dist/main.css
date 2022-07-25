@@ -2,6 +2,7 @@
 Fonts
 font-family: 'Edu TAS Beginner', cursive;
 font-family: 'Montserrat', sans-serif;
+font-family: 'Poppins', sans-serif;
 */
 
 * {
@@ -80,23 +81,25 @@ ul {
   align-items: center;
   justify-content: space-evenly;
   flex-direction: column;
+  background-color: #e4572e;
 }
 .main-header {
+  /* border: solid blue 1px; */
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  border: solid blue 1px;
   font-size: 2.5rem;
   text-decoration: underline;
 }
 .main-content {
-  border: solid green 1px;
+  border: solid #c44536 5px;
   height: 600px;
   width: 850px;
   border-radius: 30px;
   display: flex;
   flex-direction: column;
   padding: 1rem;
+  background-color: #d3d3d3;
 }
 /* Popup Form */
 .popup {
