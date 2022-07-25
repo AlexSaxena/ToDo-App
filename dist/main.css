@@ -17,9 +17,6 @@ font-family: 'Poppins', sans-serif;
   grid-template-columns: 1fr 4fr;
   grid-template-rows: 1fr auto;
 }
-ul {
-  list-style: none;
-}
 /* ASIDE Section */
 .aside-container {
   border: solid black 1px;
@@ -81,7 +78,7 @@ ul {
   align-items: center;
   justify-content: space-evenly;
   flex-direction: column;
-  background-color: #e4572e;
+  background-image: linear-gradient(120deg, #e2c35d, #d88771);
 }
 .main-header {
   /* border: solid blue 1px; */
@@ -93,14 +90,59 @@ ul {
 }
 .main-content {
   border: solid #c44536 5px;
-  height: 600px;
-  width: 850px;
+  height: 50vh;
+  width: 50vw;
   border-radius: 30px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 1rem;
   background-color: #d3d3d3;
 }
+.todo-list {
+  list-style: none;
+  min-width: 100%;
+  border: solid blue 1px;
+}
+
+.todo {
+  margin: 0.5rem;
+  background: white;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1px;
+}
+.todo li {
+  flex: 1;
+}
+.todo-item {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  gap: 0.5rem;
+}
+.todo-item > span {
+  font-family: "Poppins", sans-serif;
+}
+.complete-btn,
+.remove-btn {
+  background: #ff6f47;
+  color: white;
+  border: none;
+  padding: 1rem;
+  transition: ease-in 0.2s;
+}
+.complete-btn:hover {
+  background-color: rgb(63, 224, 63);
+  color: black;
+}
+.remove-btn:hover {
+  background-color: rgb(226, 5, 5);
+  color: black;
+}
+
 /* Popup Form */
 .popup {
   border: solid black 1px;
