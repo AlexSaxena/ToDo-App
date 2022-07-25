@@ -47,9 +47,16 @@
         <div class="main-header"><h1>Things To Do!</h1></div>
         <div class="main-content" id="standard">
           <ul class="todo-list">
-            <li class="todo-item">Test Item 1</li>
-            <li class="todo-item">Test Item 2</li>
-            <li class="todo-item">Test Item 3</li>
+            <div class="todo">
+              <li class="todo-item">
+                <span class="todo-item-title">Title |</span
+                ><span class="todo-item-desc">Description</span
+                ><span class="todo-item-dueDate">| Due Date</span
+                ><span class="todo-item-priority">| Priority </span>
+              </li>
+              <button class="complete-btn"><i class="fas fa-check"></i></button
+              ><button class="remove-btn"><i class="fas fa-trash"></i></button>
+            </div>
           </ul>
         </div>
       </main>
@@ -74,9 +81,9 @@
           <input type="date" name="duedate" id="duedate" />
           <label for="priority">Select Priority</label>
           <select name="priority" id="priority">
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
+            <option value="L">Low</option>
+            <option value="M">Medium</option>
+            <option value="H">High</option>
           </select>
           <div class="form-btns">
             <button type="button" class="popup-btn-add">Add ToDo</button>

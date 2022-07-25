@@ -102,7 +102,7 @@ font-family: 'Poppins', sans-serif;
 .todo-list {
   list-style: none;
   min-width: 100%;
-  border: solid blue 1px;
+  /* border: solid blue 1px; */
 }
 
 .todo {
@@ -124,6 +124,8 @@ font-family: 'Poppins', sans-serif;
   gap: 0.5rem;
 }
 .todo-item > span {
+  display: flex;
+  align-items: center;
   font-family: "Poppins", sans-serif;
 }
 .complete-btn,
@@ -186,6 +188,7 @@ select {
   margin-bottom: 16px;
   resize: vertical;
   text-align: center;
+  font-family: "Poppins", sans-serif;
 }
 select {
   text-transform: uppercase;

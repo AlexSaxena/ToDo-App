@@ -107,7 +107,7 @@ function createToDoItem(todoObject) {
   // Span Title
   const title = document.createElement("span");
   title.classList.add("todo-item-title");
-  title.innerText = todoObject.Title;
+  title.innerText = todoObject.Title + " |";
 
   // Span Desc
   const descr = document.createElement("span");
@@ -117,12 +117,12 @@ function createToDoItem(todoObject) {
   // Span Date
   const dueDate = document.createElement("span");
   dueDate.classList.add("todo-item-dueDate");
-  dueDate.innerText = todoObject.DueDate;
+  dueDate.innerText = "| " + todoObject.DueDate;
 
   // Span Priority
   const priority = document.createElement("span");
   priority.classList.add("todo-item-priority");
-  priority.innerText = todoObject.Priority;
+  priority.innerText = "| " + todoObject.Priority;
 
   // list item
   const newTodo = document.createElement("li");
