@@ -8,7 +8,7 @@
 
 */
 
-let id = 1;
+let id = 0;
 let allToDoArray = [];
 
 function generateId() {

@@ -67,7 +67,7 @@ const resetForm = () => {
   renderBodyElements.formTitle.value = null;
   renderBodyElements.formDesc.value = null;
   renderBodyElements.formDueDate.value = null;
-  renderBodyElements.formPriority.value = "low";
+  renderBodyElements.formPriority.value = "Low";
 };
 
 // Get Values from Form and Send to ToDo Func..
@@ -78,7 +78,12 @@ const newToDo = () => {
   let prio = renderBodyElements.formPriority.value;
   let done = false;
   // let current = getCurrentProject();
-  if (title.length < 2 || desc.length < 2 || dueDate.length < 2) {
+  if (
+    title.length < 2 ||
+    desc.length < 2 ||
+    dueDate.length < 2 ||
+    prio.length < 1
+  ) {
     alert("Please Fill In All The Boxes!");
   } else {
     createNewToDo(title, desc, dueDate, prio, done);
@@ -134,16 +139,35 @@ function createToDoItem(todoObject) {
   const completedBtn = document.createElement("button");
   completedBtn.innerHTML = "<i class='fas fa-check'></i>";
   completedBtn.classList.add("complete-btn");
+  // completedBtn.addEventListener("click", () => completed(todoObject.Id));
   todoDiv.appendChild(completedBtn);
 
-  const removeBtn = document.createElement("button");
+  let removeBtn = document.createElement("button");
   removeBtn.innerHTML = "<i class='fas fa-trash'></i>";
   removeBtn.classList.add("remove-btn");
+  removeBtn.addEventListener("click", () => removeToDo(todoObject.Id));
   todoDiv.appendChild(removeBtn);
 
   // Append to Todo LIST
   renderBodyElements.todoList.appendChild(todoDiv);
 }
+
+// Function for removing ToDo
+function removeToDo(ToDoId) {
+  let removeIndex = allToDoArray
+    .map(function (todoItem) {
+      return todoItem.Id;
+    })
+    .indexOf(ToDoId);
+  allToDoArray.splice(removeIndex, 1);
+
+  fillToDoList();
+}
+
+// Function for Adding ID line-through;
+// function completed(ToDoId) {
+//   console.log("completed " + ToDoId);
+// }
 
 // Gets Current Project name
 // function getCurrentProject() {
