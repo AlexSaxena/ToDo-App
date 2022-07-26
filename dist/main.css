@@ -90,8 +90,8 @@ font-family: 'Poppins', sans-serif;
 }
 .main-content {
   border: solid #c44536 5px;
-  height: 50vh;
-  width: 50vw;
+  min-height: 50vh;
+  min-width: 50vw;
   border-radius: 30px;
   display: flex;
   flex-direction: column;
@@ -113,6 +113,9 @@ font-family: 'Poppins', sans-serif;
   justify-content: space-between;
   align-items: center;
   gap: 1px;
+}
+.todo-line {
+  text-decoration: line-through;
 }
 .todo li {
   flex: 1;
