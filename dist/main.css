@@ -71,6 +71,7 @@ font-family: 'Poppins', sans-serif;
 .project-list {
   list-style: circle;
 }
+
 /* MAIN Section */
 .main-container {
   border: solid orange 1px;
@@ -81,7 +82,6 @@ font-family: 'Poppins', sans-serif;
   background-image: linear-gradient(120deg, #e2c35d, #d88771);
 }
 .main-header {
-  /* border: solid blue 1px; */
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -102,9 +102,7 @@ font-family: 'Poppins', sans-serif;
 .todo-list {
   list-style: none;
   min-width: 100%;
-  /* border: solid blue 1px; */
 }
-
 .todo {
   margin: 0.5rem;
   background: white;
@@ -235,4 +233,9 @@ select {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.12em;
 }
