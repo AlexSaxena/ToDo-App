@@ -1,11 +1,7 @@
-import content from "./content";
 import { createNewToDo, checkToDo, allToDoArray } from "./createToDo";
 
 console.log("Greetings, General Kenobi!");
-content;
-
 let popup = document.getElementById("popup");
-// createNewToDo("a", "a", "a", "top", true);
 
 const renderBodyElements = (function () {
   let openPopupBtn = document.querySelector(".btn-create-todo");
