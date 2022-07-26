@@ -109,6 +109,9 @@ function createToDoItem(todoObject) {
   const todoDiv = document.createElement("div");
   todoDiv.classList.add("todo");
   todoDiv.setAttribute("id", "todo" + todoObject.Id);
+  if (todoObject.Completed == true) {
+    todoDiv.classList.add("todo-line");
+  }
 
   // Span Title
   const title = document.createElement("span");
@@ -172,12 +175,15 @@ function completed(ToDoId) {
       return todoItem.Id;
     })
     .indexOf(ToDoId);
+
+  let currentToDoId = allToDoArray[completedIndex].Id;
+
   if (allToDoArray[completedIndex].Completed == false) {
     allToDoArray[completedIndex].Completed = true;
-    changeStatus(true, completedIndex);
+    changeStatus(true, currentToDoId);
   } else if (allToDoArray[completedIndex].Completed == true) {
     allToDoArray[completedIndex].Completed = false;
-    changeStatus(false, completedIndex);
+    changeStatus(false, currentToDoId);
   }
 }
 

@@ -116,6 +116,9 @@ font-family: 'Poppins', sans-serif;
 }
 .todo-line {
   text-decoration: line-through;
+  text-decoration-color: black;
+  color: white;
+  background-color: lightcoral;
 }
 .todo li {
   flex: 1;
