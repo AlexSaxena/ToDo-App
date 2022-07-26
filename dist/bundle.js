@@ -147,6 +147,7 @@ const renderBodyElements = (function () {
   let formPriority = document.querySelector("#priority");
   let formDueDate = document.querySelector("#duedate");
   let todoList = document.querySelector(".todo-list");
+  let filterOption = document.querySelector(".select-filter");
   return {
     openPopupBtn,
     closePopupBtn,
@@ -157,6 +158,7 @@ const renderBodyElements = (function () {
     formPriority,
     formDueDate,
     todoList,
+    filterOption,
   };
 })();
 
@@ -183,6 +185,9 @@ renderBodyElements.newToDoItem.addEventListener("click", () => {
   (0,_createToDo__WEBPACK_IMPORTED_MODULE_0__.checkToDo)();
   closePopup();
 });
+
+// Listener for Filter Options
+renderBodyElements.filterOption.addEventListener("click", filterToDo);
 
 // Functions for Removing Open/Close Popup CLASS
 const showPopup = () => {
@@ -222,15 +227,29 @@ const newToDo = () => {
 };
 
 // Fill ToDo List
-function fillToDoList() {
+function fillToDoList(filter = "all") {
   let list = renderBodyElements.todoList;
   while (list.firstChild) {
     list.removeChild(list.lastChild);
   }
-  _createToDo__WEBPACK_IMPORTED_MODULE_0__.allToDoArray.forEach((item) => {
-    createToDoItem(item);
-    console.table(item);
-  });
+  if (filter == "all") {
+    _createToDo__WEBPACK_IMPORTED_MODULE_0__.allToDoArray.forEach((item) => {
+      createToDoItem(item);
+      console.table(item);
+    });
+  } else if (filter == "completed") {
+    _createToDo__WEBPACK_IMPORTED_MODULE_0__.allToDoArray.forEach((item) => {
+      if (item.Completed == true) {
+        createToDoItem(item);
+      }
+    });
+  } else if (filter == "uncompleted") {
+    _createToDo__WEBPACK_IMPORTED_MODULE_0__.allToDoArray.forEach((item) => {
+      if (item.Completed == false) {
+        createToDoItem(item);
+      }
+    });
+  }
 }
 
 // Function for generating a new ToDo item
@@ -319,6 +338,16 @@ function changeStatus(status, index) {
   let current = document.querySelector(`#todo${index}`);
   if (status == false || status == true) {
     current.classList.toggle("todo-line");
+  }
+}
+
+function filterToDo() {
+  if (renderBodyElements.filterOption.value == "all") {
+    fillToDoList("all");
+  } else if (renderBodyElements.filterOption.value == "completed") {
+    fillToDoList("completed");
+  } else if (renderBodyElements.filterOption.value == "uncompleted") {
+    fillToDoList("uncompleted");
   }
 }
 

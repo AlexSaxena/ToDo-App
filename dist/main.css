@@ -71,6 +71,10 @@ font-family: 'Poppins', sans-serif;
 .project-list {
   list-style: circle;
 }
+.select-filter {
+  width: 90%;
+  cursor: pointer;
+}
 
 /* MAIN Section */
 .main-container {

@@ -13,6 +13,7 @@ const renderBodyElements = (function () {
   let formPriority = document.querySelector("#priority");
   let formDueDate = document.querySelector("#duedate");
   let todoList = document.querySelector(".todo-list");
+  let filterOption = document.querySelector(".select-filter");
   return {
     openPopupBtn,
     closePopupBtn,
@@ -23,6 +24,7 @@ const renderBodyElements = (function () {
     formPriority,
     formDueDate,
     todoList,
+    filterOption,
   };
 })();
 
@@ -49,6 +51,9 @@ renderBodyElements.newToDoItem.addEventListener("click", () => {
   checkToDo();
   closePopup();
 });
+
+// Listener for Filter Options
+renderBodyElements.filterOption.addEventListener("click", filterToDo);
 
 // Functions for Removing Open/Close Popup CLASS
 const showPopup = () => {
@@ -88,15 +93,29 @@ const newToDo = () => {
 };
 
 // Fill ToDo List
-function fillToDoList() {
+function fillToDoList(filter = "all") {
   let list = renderBodyElements.todoList;
   while (list.firstChild) {
     list.removeChild(list.lastChild);
   }
-  allToDoArray.forEach((item) => {
-    createToDoItem(item);
-    console.table(item);
-  });
+  if (filter == "all") {
+    allToDoArray.forEach((item) => {
+      createToDoItem(item);
+      console.table(item);
+    });
+  } else if (filter == "completed") {
+    allToDoArray.forEach((item) => {
+      if (item.Completed == true) {
+        createToDoItem(item);
+      }
+    });
+  } else if (filter == "uncompleted") {
+    allToDoArray.forEach((item) => {
+      if (item.Completed == false) {
+        createToDoItem(item);
+      }
+    });
+  }
 }
 
 // Function for generating a new ToDo item
@@ -142,7 +161,7 @@ function createToDoItem(todoObject) {
   completedBtn.addEventListener("click", () => completed(todoObject.Id));
   todoDiv.appendChild(completedBtn);
 
-  let removeBtn = document.createElement("button");
+  const removeBtn = document.createElement("button");
   removeBtn.innerHTML = "<i class='fas fa-trash'></i>";
   removeBtn.classList.add("remove-btn");
   removeBtn.addEventListener("click", () => removeToDo(todoObject.Id));
@@ -187,6 +206,16 @@ function changeStatus(status, index) {
   let current = document.querySelector(`#todo${index}`);
   if (status == false || status == true) {
     current.classList.toggle("todo-line");
+  }
+}
+
+function filterToDo() {
+  if (renderBodyElements.filterOption.value == "all") {
+    fillToDoList("all");
+  } else if (renderBodyElements.filterOption.value == "completed") {
+    fillToDoList("completed");
+  } else if (renderBodyElements.filterOption.value == "uncompleted") {
+    fillToDoList("uncompleted");
   }
 }
 
