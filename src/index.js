@@ -108,6 +108,7 @@ function createToDoItem(todoObject) {
   // Div element
   const todoDiv = document.createElement("div");
   todoDiv.classList.add("todo");
+  todoDiv.setAttribute("id", "todo" + todoObject.Id);
 
   // Span Title
   const title = document.createElement("span");
@@ -139,7 +140,7 @@ function createToDoItem(todoObject) {
   const completedBtn = document.createElement("button");
   completedBtn.innerHTML = "<i class='fas fa-check'></i>";
   completedBtn.classList.add("complete-btn");
-  // completedBtn.addEventListener("click", () => completed(todoObject.Id));
+  completedBtn.addEventListener("click", () => completed(todoObject.Id));
   todoDiv.appendChild(completedBtn);
 
   let removeBtn = document.createElement("button");
@@ -165,9 +166,27 @@ function removeToDo(ToDoId) {
 }
 
 // Function for Adding ID line-through;
-// function completed(ToDoId) {
-//   console.log("completed " + ToDoId);
-// }
+function completed(ToDoId) {
+  let completedIndex = allToDoArray
+    .map(function (todoItem) {
+      return todoItem.Id;
+    })
+    .indexOf(ToDoId);
+  if (allToDoArray[completedIndex].Completed == false) {
+    allToDoArray[completedIndex].Completed = true;
+    changeStatus(true, completedIndex);
+  } else if (allToDoArray[completedIndex].Completed == true) {
+    allToDoArray[completedIndex].Completed = false;
+    changeStatus(false, completedIndex);
+  }
+}
+
+function changeStatus(status, index) {
+  let current = document.querySelector(`#todo${index}`);
+  if (status == false || status == true) {
+    current.classList.toggle("todo-line");
+  }
+}
 
 // Gets Current Project name
 // function getCurrentProject() {
