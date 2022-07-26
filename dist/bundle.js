@@ -2,21 +2,6 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/content.js":
-/*!************************!*\
-  !*** ./src/content.js ***!
-  \************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (console.log("Hello There!"));
-
-
-/***/ }),
-
 /***/ "./src/createToDo.js":
 /*!***************************!*\
   !*** ./src/createToDo.js ***!
@@ -146,16 +131,11 @@ var __webpack_exports__ = {};
   !*** ./src/index.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _content__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./content */ "./src/content.js");
-/* harmony import */ var _createToDo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createToDo */ "./src/createToDo.js");
-
+/* harmony import */ var _createToDo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createToDo */ "./src/createToDo.js");
 
 
 console.log("Greetings, General Kenobi!");
-_content__WEBPACK_IMPORTED_MODULE_0__["default"];
-
 let popup = document.getElementById("popup");
-// createNewToDo("a", "a", "a", "top", true);
 
 const renderBodyElements = (function () {
   let openPopupBtn = document.querySelector(".btn-create-todo");
@@ -200,7 +180,7 @@ renderBodyElements.closePopupBtn.addEventListener("click", () => {
 renderBodyElements.newToDoItem.addEventListener("click", () => {
   newToDo();
   resetForm();
-  (0,_createToDo__WEBPACK_IMPORTED_MODULE_1__.checkToDo)();
+  (0,_createToDo__WEBPACK_IMPORTED_MODULE_0__.checkToDo)();
   closePopup();
 });
 
@@ -236,7 +216,7 @@ const newToDo = () => {
   ) {
     alert("Please Fill In All The Boxes!");
   } else {
-    (0,_createToDo__WEBPACK_IMPORTED_MODULE_1__.createNewToDo)(title, desc, dueDate, prio, done);
+    (0,_createToDo__WEBPACK_IMPORTED_MODULE_0__.createNewToDo)(title, desc, dueDate, prio, done);
   }
   fillToDoList();
 };
@@ -247,7 +227,7 @@ function fillToDoList() {
   while (list.firstChild) {
     list.removeChild(list.lastChild);
   }
-  _createToDo__WEBPACK_IMPORTED_MODULE_1__.allToDoArray.forEach((item) => {
+  _createToDo__WEBPACK_IMPORTED_MODULE_0__.allToDoArray.forEach((item) => {
     createToDoItem(item);
     console.table(item);
   });
@@ -308,29 +288,29 @@ function createToDoItem(todoObject) {
 
 // Function for removing ToDo
 function removeToDo(ToDoId) {
-  let removeIndex = _createToDo__WEBPACK_IMPORTED_MODULE_1__.allToDoArray.map(function (todoItem) {
+  let removeIndex = _createToDo__WEBPACK_IMPORTED_MODULE_0__.allToDoArray.map(function (todoItem) {
       return todoItem.Id;
     })
     .indexOf(ToDoId);
-  _createToDo__WEBPACK_IMPORTED_MODULE_1__.allToDoArray.splice(removeIndex, 1);
+  _createToDo__WEBPACK_IMPORTED_MODULE_0__.allToDoArray.splice(removeIndex, 1);
 
   fillToDoList();
 }
 
 // Function for Adding ID line-through;
 function completed(ToDoId) {
-  let completedIndex = _createToDo__WEBPACK_IMPORTED_MODULE_1__.allToDoArray.map(function (todoItem) {
+  let completedIndex = _createToDo__WEBPACK_IMPORTED_MODULE_0__.allToDoArray.map(function (todoItem) {
       return todoItem.Id;
     })
     .indexOf(ToDoId);
 
-  let currentToDoId = _createToDo__WEBPACK_IMPORTED_MODULE_1__.allToDoArray[completedIndex].Id;
+  let currentToDoId = _createToDo__WEBPACK_IMPORTED_MODULE_0__.allToDoArray[completedIndex].Id;
 
-  if (_createToDo__WEBPACK_IMPORTED_MODULE_1__.allToDoArray[completedIndex].Completed == false) {
-    _createToDo__WEBPACK_IMPORTED_MODULE_1__.allToDoArray[completedIndex].Completed = true;
+  if (_createToDo__WEBPACK_IMPORTED_MODULE_0__.allToDoArray[completedIndex].Completed == false) {
+    _createToDo__WEBPACK_IMPORTED_MODULE_0__.allToDoArray[completedIndex].Completed = true;
     changeStatus(true, currentToDoId);
-  } else if (_createToDo__WEBPACK_IMPORTED_MODULE_1__.allToDoArray[completedIndex].Completed == true) {
-    _createToDo__WEBPACK_IMPORTED_MODULE_1__.allToDoArray[completedIndex].Completed = false;
+  } else if (_createToDo__WEBPACK_IMPORTED_MODULE_0__.allToDoArray[completedIndex].Completed == true) {
+    _createToDo__WEBPACK_IMPORTED_MODULE_0__.allToDoArray[completedIndex].Completed = false;
     changeStatus(false, currentToDoId);
   }
 }
