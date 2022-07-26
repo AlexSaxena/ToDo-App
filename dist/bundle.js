@@ -39,7 +39,7 @@ __webpack_require__.r(__webpack_exports__);
 
 */
 
-let id = 1;
+let id = 0;
 let allToDoArray = [];
 
 function generateId() {
@@ -217,7 +217,7 @@ const resetForm = () => {
   renderBodyElements.formTitle.value = null;
   renderBodyElements.formDesc.value = null;
   renderBodyElements.formDueDate.value = null;
-  renderBodyElements.formPriority.value = "low";
+  renderBodyElements.formPriority.value = "Low";
 };
 
 // Get Values from Form and Send to ToDo Func..
@@ -228,7 +228,12 @@ const newToDo = () => {
   let prio = renderBodyElements.formPriority.value;
   let done = false;
   // let current = getCurrentProject();
-  if (title.length < 2 || desc.length < 2 || dueDate.length < 2) {
+  if (
+    title.length < 2 ||
+    desc.length < 2 ||
+    dueDate.length < 2 ||
+    prio.length < 1
+  ) {
     alert("Please Fill In All The Boxes!");
   } else {
     (0,_createToDo__WEBPACK_IMPORTED_MODULE_1__.createNewToDo)(title, desc, dueDate, prio, done);
@@ -253,6 +258,10 @@ function createToDoItem(todoObject) {
   // Div element
   const todoDiv = document.createElement("div");
   todoDiv.classList.add("todo");
+  todoDiv.setAttribute("id", "todo" + todoObject.Id);
+  if (todoObject.Completed == true) {
+    todoDiv.classList.add("todo-line");
+  }
 
   // Span Title
   const title = document.createElement("span");
@@ -284,15 +293,53 @@ function createToDoItem(todoObject) {
   const completedBtn = document.createElement("button");
   completedBtn.innerHTML = "<i class='fas fa-check'></i>";
   completedBtn.classList.add("complete-btn");
+  completedBtn.addEventListener("click", () => completed(todoObject.Id));
   todoDiv.appendChild(completedBtn);
 
-  const removeBtn = document.createElement("button");
+  let removeBtn = document.createElement("button");
   removeBtn.innerHTML = "<i class='fas fa-trash'></i>";
   removeBtn.classList.add("remove-btn");
+  removeBtn.addEventListener("click", () => removeToDo(todoObject.Id));
   todoDiv.appendChild(removeBtn);
 
   // Append to Todo LIST
   renderBodyElements.todoList.appendChild(todoDiv);
+}
+
+// Function for removing ToDo
+function removeToDo(ToDoId) {
+  let removeIndex = _createToDo__WEBPACK_IMPORTED_MODULE_1__.allToDoArray.map(function (todoItem) {
+      return todoItem.Id;
+    })
+    .indexOf(ToDoId);
+  _createToDo__WEBPACK_IMPORTED_MODULE_1__.allToDoArray.splice(removeIndex, 1);
+
+  fillToDoList();
+}
+
+// Function for Adding ID line-through;
+function completed(ToDoId) {
+  let completedIndex = _createToDo__WEBPACK_IMPORTED_MODULE_1__.allToDoArray.map(function (todoItem) {
+      return todoItem.Id;
+    })
+    .indexOf(ToDoId);
+
+  let currentToDoId = _createToDo__WEBPACK_IMPORTED_MODULE_1__.allToDoArray[completedIndex].Id;
+
+  if (_createToDo__WEBPACK_IMPORTED_MODULE_1__.allToDoArray[completedIndex].Completed == false) {
+    _createToDo__WEBPACK_IMPORTED_MODULE_1__.allToDoArray[completedIndex].Completed = true;
+    changeStatus(true, currentToDoId);
+  } else if (_createToDo__WEBPACK_IMPORTED_MODULE_1__.allToDoArray[completedIndex].Completed == true) {
+    _createToDo__WEBPACK_IMPORTED_MODULE_1__.allToDoArray[completedIndex].Completed = false;
+    changeStatus(false, currentToDoId);
+  }
+}
+
+function changeStatus(status, index) {
+  let current = document.querySelector(`#todo${index}`);
+  if (status == false || status == true) {
+    current.classList.toggle("todo-line");
+  }
 }
 
 // Gets Current Project name
