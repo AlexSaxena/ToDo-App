@@ -2,7 +2,7 @@
     Every object Should have | Title, Description, Due Date, Priority, Checkbox(True == Completed), Id |
 
     For Testing
-    createNewToDo("a", "a", "a", "top", true);
+    createNewToDo("Title |", "Description", "| Due Date", "| Priority");
     let test1 = createNewToDo("b", "b", "b", "mid", true);
     let test2 = createNewToDo("c", "c", "c", "bottom", false);
 
@@ -12,6 +12,7 @@ let id = 0;
 let allToDoArray = [];
 
 function generateId() {
+  // Remake Random ID
   let test = id++;
   return test;
 }
@@ -34,7 +35,7 @@ function createNewToDo(
     CurrentProject: currentProject,
   };
   allToDoArray.push(todo);
-
+  saveLocalTodos(todo);
   return todo;
 }
 
@@ -47,4 +48,61 @@ function checkToDo() {
   });
 }
 
-export { createNewToDo, checkToDo, allToDoArray };
+function saveLocalTodos(todo) {
+  // first check if Storage Exist
+  let todos;
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+  todos.push(todo);
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+function getLocalTodos(todo) {
+  let todos;
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+  // todos.forEach(function (item) {
+  //   createNewToDo(
+  //     item.Title,
+  //     item.Description,
+  //     item.DueDate,
+  //     item.Priority,
+  //     item.Completed
+  //   );
+  // });
+  todos.forEach(function (item) {
+    allToDoArray.push(item);
+  });
+}
+
+function removeLocalTodos(todo) {
+  let todos;
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+  let pos = todos
+    .map(function (e) {
+      return e.Description;
+    })
+    .indexOf(todo.Description);
+
+  console.log("87 " + pos);
+  todos.splice(pos, 1);
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+export {
+  createNewToDo,
+  checkToDo,
+  allToDoArray,
+  getLocalTodos,
+  removeLocalTodos,
+};

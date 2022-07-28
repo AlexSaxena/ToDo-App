@@ -1,4 +1,10 @@
-import { createNewToDo, checkToDo, allToDoArray } from "./createToDo";
+import {
+  createNewToDo,
+  checkToDo,
+  allToDoArray,
+  getLocalTodos,
+  removeLocalTodos,
+} from "./createToDo";
 
 console.log("Greetings, General Kenobi!");
 let popup = document.getElementById("popup");
@@ -27,6 +33,11 @@ const renderBodyElements = (function () {
     filterOption,
   };
 })();
+
+document.addEventListener("DOMContentLoaded", () => {
+  getLocalTodos();
+  fillToDoList();
+});
 
 // Event Listeners For opening & Closing Form
 renderBodyElements.openPopupBtn.addEventListener("click", () => {
@@ -101,7 +112,6 @@ function fillToDoList(filter = "all") {
   if (filter == "all") {
     allToDoArray.forEach((item) => {
       createToDoItem(item);
-      console.table(item);
     });
   } else if (filter == "completed") {
     allToDoArray.forEach((item) => {
@@ -164,7 +174,10 @@ function createToDoItem(todoObject) {
   const removeBtn = document.createElement("button");
   removeBtn.innerHTML = "<i class='fas fa-trash'></i>";
   removeBtn.classList.add("remove-btn");
-  removeBtn.addEventListener("click", () => removeToDo(todoObject.Id));
+  removeBtn.addEventListener("click", function () {
+    removeLocalTodos(todoObject);
+    removeToDo(todoObject.Id);
+  });
   todoDiv.appendChild(removeBtn);
 
   // Append to Todo LIST
@@ -179,7 +192,6 @@ function removeToDo(ToDoId) {
     })
     .indexOf(ToDoId);
   allToDoArray.splice(removeIndex, 1);
-
   fillToDoList();
 }
 
