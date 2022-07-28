@@ -4,6 +4,7 @@ import {
   allToDoArray,
   getLocalTodos,
   removeLocalTodos,
+  updateStateLocalTodo,
 } from "./createToDo";
 
 console.log("Greetings, General Kenobi!");
@@ -208,9 +209,11 @@ function completed(ToDoId) {
   if (allToDoArray[completedIndex].Completed == false) {
     allToDoArray[completedIndex].Completed = true;
     changeStatus(true, currentToDoId);
+    updateStateLocalTodo(true, currentToDoId);
   } else if (allToDoArray[completedIndex].Completed == true) {
     allToDoArray[completedIndex].Completed = false;
     changeStatus(false, currentToDoId);
+    updateStateLocalTodo(false, currentToDoId);
   }
 }
 

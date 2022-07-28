@@ -91,10 +91,28 @@ function removeLocalTodos(todo) {
   localStorage.setItem("todos", JSON.stringify(todos));
 }
 
+function updateStateLocalTodo(state, currentToDoId) {
+  let todos;
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+  let pos = todos
+    .map(function (e) {
+      return e.Id;
+    })
+    .indexOf(currentToDoId);
+
+  todos[pos].Completed = state;
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+
 export {
   createNewToDo,
   checkToDo,
   allToDoArray,
   getLocalTodos,
   removeLocalTodos,
+  updateStateLocalTodo,
 };
