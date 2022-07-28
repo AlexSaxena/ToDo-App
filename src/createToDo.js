@@ -8,13 +8,15 @@
 
 */
 
-let id = 0;
 let allToDoArray = [];
 
 function generateId() {
-  // Remake Random ID
-  let test = id++;
-  return test;
+  let randomId = Math.floor(Math.random() * 100);
+  let alpha = ["A", "a", "B", "b", "C", "c"];
+  let randomAlphaIndex = Math.floor(Math.random() * 6);
+  let randomAlpha = alpha[randomAlphaIndex];
+  let UID = randomAlpha + randomId;
+  return UID;
 }
 
 function createNewToDo(
@@ -67,15 +69,6 @@ function getLocalTodos(todo) {
   } else {
     todos = JSON.parse(localStorage.getItem("todos"));
   }
-  // todos.forEach(function (item) {
-  //   createNewToDo(
-  //     item.Title,
-  //     item.Description,
-  //     item.DueDate,
-  //     item.Priority,
-  //     item.Completed
-  //   );
-  // });
   todos.forEach(function (item) {
     allToDoArray.push(item);
   });
@@ -90,11 +83,10 @@ function removeLocalTodos(todo) {
   }
   let pos = todos
     .map(function (e) {
-      return e.Description;
+      return e.Id;
     })
-    .indexOf(todo.Description);
+    .indexOf(todo.Id);
 
-  console.log("87 " + pos);
   todos.splice(pos, 1);
   localStorage.setItem("todos", JSON.stringify(todos));
 }
