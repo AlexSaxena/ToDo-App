@@ -12,24 +12,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "allToDoArray": () => (/* binding */ allToDoArray),
 /* harmony export */   "checkToDo": () => (/* binding */ checkToDo),
-/* harmony export */   "createNewToDo": () => (/* binding */ createNewToDo)
+/* harmony export */   "createNewToDo": () => (/* binding */ createNewToDo),
+/* harmony export */   "getLocalTodos": () => (/* binding */ getLocalTodos),
+/* harmony export */   "removeLocalTodos": () => (/* binding */ removeLocalTodos),
+/* harmony export */   "updateStateLocalTodo": () => (/* binding */ updateStateLocalTodo)
 /* harmony export */ });
 /*  factory Function to create new ToDo Items
     Every object Should have | Title, Description, Due Date, Priority, Checkbox(True == Completed), Id |
 
     For Testing
-    createNewToDo("a", "a", "a", "top", true);
+    createNewToDo("Title |", "Description", "| Due Date", "| Priority");
     let test1 = createNewToDo("b", "b", "b", "mid", true);
     let test2 = createNewToDo("c", "c", "c", "bottom", false);
 
 */
 
-let id = 0;
 let allToDoArray = [];
 
 function generateId() {
-  let test = id++;
-  return test;
+  let randomId = Math.floor(Math.random() * 100);
+  let alpha = ["A", "a", "B", "b", "C", "c"];
+  let randomAlphaIndex = Math.floor(Math.random() * 6);
+  let randomAlpha = alpha[randomAlphaIndex];
+  let UID = randomAlpha + randomId;
+  return UID;
 }
 
 function createNewToDo(
@@ -50,7 +56,7 @@ function createNewToDo(
     CurrentProject: currentProject,
   };
   allToDoArray.push(todo);
-
+  saveLocalTodos(todo);
   return todo;
 }
 
@@ -61,6 +67,64 @@ function checkToDo() {
   allToDoArray.forEach((item) => {
     console.table(item);
   });
+}
+
+function saveLocalTodos(todo) {
+  // first check if Storage Exist
+  let todos;
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+  todos.push(todo);
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+function getLocalTodos(todo) {
+  let todos;
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+  todos.forEach(function (item) {
+    allToDoArray.push(item);
+  });
+}
+
+function removeLocalTodos(todo) {
+  let todos;
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+  let pos = todos
+    .map(function (e) {
+      return e.Id;
+    })
+    .indexOf(todo.Id);
+
+  todos.splice(pos, 1);
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+function updateStateLocalTodo(state, currentToDoId) {
+  let todos;
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+  let pos = todos
+    .map(function (e) {
+      return e.Id;
+    })
+    .indexOf(currentToDoId);
+
+  todos[pos].Completed = state;
+  localStorage.setItem("todos", JSON.stringify(todos));
 }
 
 
@@ -162,6 +226,11 @@ const renderBodyElements = (function () {
   };
 })();
 
+document.addEventListener("DOMContentLoaded", () => {
+  (0,_createToDo__WEBPACK_IMPORTED_MODULE_0__.getLocalTodos)();
+  fillToDoList();
+});
+
 // Event Listeners For opening & Closing Form
 renderBodyElements.openPopupBtn.addEventListener("click", () => {
   if (popup.classList.contains("open-popup")) {
@@ -235,7 +304,6 @@ function fillToDoList(filter = "all") {
   if (filter == "all") {
     _createToDo__WEBPACK_IMPORTED_MODULE_0__.allToDoArray.forEach((item) => {
       createToDoItem(item);
-      console.table(item);
     });
   } else if (filter == "completed") {
     _createToDo__WEBPACK_IMPORTED_MODULE_0__.allToDoArray.forEach((item) => {
@@ -295,10 +363,13 @@ function createToDoItem(todoObject) {
   completedBtn.addEventListener("click", () => completed(todoObject.Id));
   todoDiv.appendChild(completedBtn);
 
-  let removeBtn = document.createElement("button");
+  const removeBtn = document.createElement("button");
   removeBtn.innerHTML = "<i class='fas fa-trash'></i>";
   removeBtn.classList.add("remove-btn");
-  removeBtn.addEventListener("click", () => removeToDo(todoObject.Id));
+  removeBtn.addEventListener("click", function () {
+    (0,_createToDo__WEBPACK_IMPORTED_MODULE_0__.removeLocalTodos)(todoObject);
+    removeToDo(todoObject.Id);
+  });
   todoDiv.appendChild(removeBtn);
 
   // Append to Todo LIST
@@ -312,7 +383,6 @@ function removeToDo(ToDoId) {
     })
     .indexOf(ToDoId);
   _createToDo__WEBPACK_IMPORTED_MODULE_0__.allToDoArray.splice(removeIndex, 1);
-
   fillToDoList();
 }
 
@@ -328,9 +398,11 @@ function completed(ToDoId) {
   if (_createToDo__WEBPACK_IMPORTED_MODULE_0__.allToDoArray[completedIndex].Completed == false) {
     _createToDo__WEBPACK_IMPORTED_MODULE_0__.allToDoArray[completedIndex].Completed = true;
     changeStatus(true, currentToDoId);
+    (0,_createToDo__WEBPACK_IMPORTED_MODULE_0__.updateStateLocalTodo)(true, currentToDoId);
   } else if (_createToDo__WEBPACK_IMPORTED_MODULE_0__.allToDoArray[completedIndex].Completed == true) {
     _createToDo__WEBPACK_IMPORTED_MODULE_0__.allToDoArray[completedIndex].Completed = false;
     changeStatus(false, currentToDoId);
+    (0,_createToDo__WEBPACK_IMPORTED_MODULE_0__.updateStateLocalTodo)(false, currentToDoId);
   }
 }
 
